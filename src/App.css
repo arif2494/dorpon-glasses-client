@@ -10,6 +10,15 @@
 .h-700 {
 	height: 700px;
 }
-.color-white {
-	color: #fff !important;
+
+/* footer */
+.footer-bg {
+	background-image: url(./img/wave.svg);
+	width: 100%;
+	background-size: cover;
+	height: 300px;
+	background-repeat: no-repeat;
+}
+.h-300 {
+	height: 300px;
 }
