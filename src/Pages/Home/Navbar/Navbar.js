@@ -7,13 +7,13 @@ const Navbar = () => {
 
 	return (
 		// <!-- Navbar goes here -->
-		<nav className="bg-white shadow-lg">
+		<nav className="nav-bg shadow-lg">
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
 					<div className="flex space-x-7">
 						<div>
 							{/* <!-- Website Logo --> */}
-							<a href className="flex items-center py-4 px-2">
+							<a href="/" className="flex items-center py-4 px-2">
 								{/* <img src="logo.png" alt="Logo" className="h-8 w-8 mr-2"> */}
 								<span className="font-semibold text-gray-500 text-lg">Dorpon</span>
 							</a>
@@ -21,25 +21,25 @@ const Navbar = () => {
 						{/* <!-- Primary Navbar items --> */}
 						<div className="hidden md:flex items-center space-x-1">
 							<a
-								href
+								href="/"
 								className="py-4 px-2 text-gray-500  font-semibold  hover:text-green-500 transition duration-300"
 							>
 								Home
 							</a>
 							<a
-								href
+								href="/"
 								className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
 							>
 								Services
 							</a>
 							<a
-								href
+								href="/"
 								className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
 							>
 								About
 							</a>
 							<a
-								href
+								href="/"
 								className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
 							>
 								Contact Us
@@ -49,7 +49,7 @@ const Navbar = () => {
 					{/* <!-- Secondary Navbar items --> */}
 					<div className="hidden md:flex items-center space-x-3 ">
 						<a
-							href
+							href="/"
 							className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
 						>
 							Log In
@@ -68,9 +68,9 @@ const Navbar = () => {
 								className=" w-6 h-6 text-gray-500 hover:text-green-500 "
 								x-show="!showMenu"
 								fill="none"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
 								viewBox="0 0 24 24"
 								stroke="currentColor"
 							>
