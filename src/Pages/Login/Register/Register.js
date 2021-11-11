@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import google from '../../../img/icon/google.png';
-const Login = () => {
+const Register = () => {
 	const [ userData, setUserData ] = useState({});
 	console.log(userData);
-	const { signInWithGoogle, logInWithEmailAndPassword } = useAuth();
+	const { signInWithGoogle, registerWithEmailAndPassword } = useAuth();
 	const handleOnBlur = (e) => {
 		const data = { ...userData };
 		const name = e.target.name;
@@ -15,12 +15,12 @@ const Login = () => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		logInWithEmailAndPassword(userData.email, userData.password);
+		registerWithEmailAndPassword(userData.email, userData.password);
 	};
 	return (
 		<div className="h-700">
 			<div className="container mx-auto">
-				<h1 className="text-center my-6 text-3xl font-medium">Enter Email and Password For Login</h1>
+				<h1 className="text-center my-6 text-3xl font-medium">Enter Email and Password For Register</h1>
 				<div className=" mx-auto w-4/12 px-4 py-6 bg-green-200">
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="email" className=" pl-1 text-2xl font-medium">
@@ -48,15 +48,15 @@ const Login = () => {
 						</button>
 					</form>
 					<div className="text-center">
-						<p>Don't have an account?</p>
-						<Link className="text-blue-700" to="register">
-							Register Here...
+						<p>Already have an account?</p>
+						<Link className="text-blue-700" to="/login">
+							Login Here...
 						</Link>
 					</div>
 					<div className="flex justify-center ">
 						<button onClick={signInWithGoogle} className="flex  flex-col items-center">
 							<img src={google} className="w-12" alt="!" />
-							<p>Sign In With Google</p>
+							<p>Sign Up With Google</p>
 						</button>
 					</div>
 				</div>
@@ -65,4 +65,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Register;

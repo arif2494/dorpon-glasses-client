@@ -6,6 +6,7 @@ import Navbar from './Pages/Shared/Navbar/Navbar';
 import Footer from './Pages/Shared/Footer/Footer';
 import AuthProvider from './context/AuthProvider/AuthProvider';
 import Login from './Pages/Login/Login/Login';
+import Register from './Pages/Login/Register/Register';
 
 function App() {
 	return (
@@ -16,11 +17,14 @@ function App() {
 					<Route exact path="/">
 						<Home />
 					</Route>
-					<Route exact path="/exploreProducts">
+					<Route path="/exploreProducts">
 						<ExploreProducts />
 					</Route>
-					<Route exact path="/login">
+					<Route path="/login">
 						<Login />
+					</Route>
+					<Route path="/register">
+						<Register />
 					</Route>
 				</Switch>
 				<Footer />

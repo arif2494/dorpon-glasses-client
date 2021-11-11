@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import initializeFirebase from '../Pages/Login/Firebase/firebase.init';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
+import {
+	getAuth,
+	signInWithPopup,
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	GoogleAuthProvider,
+	onAuthStateChanged,
+	signOut
+} from 'firebase/auth';
 
 initializeFirebase();
 const useFirebase = () => {
@@ -16,6 +24,32 @@ const useFirebase = () => {
 				const user = result.user;
 				setUser(user);
 				// console.log(user);
+			})
+			.catch((error) => {
+				const errorMessage = error.message;
+				console.log(errorMessage);
+			});
+	};
+	// register with email and password
+	const registerWithEmailAndPassword = (email, password) => {
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				// Signed in
+				const user = userCredential.user;
+				console.log(user);
+			})
+			.catch((error) => {
+				const errorMessage = error.message;
+				console.log(errorMessage);
+			});
+	};
+	// sign user with email & password
+	const logInWithEmailAndPassword = (email, password) => {
+		signInWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				// Signed in
+				const user = userCredential.user;
+				console.log(user);
 			})
 			.catch((error) => {
 				const errorMessage = error.message;
@@ -48,6 +82,8 @@ const useFirebase = () => {
 	};
 	return {
 		signInWithGoogle,
+		registerWithEmailAndPassword,
+		logInWithEmailAndPassword,
 		user,
 		logOut
 	};
