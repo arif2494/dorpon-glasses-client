@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
+	const { user, logOut } = useAuth();
 	const mobileMenuButton = () => {
 		document.getElementById('mobile-menu').classList.toggle('hidden');
 	};
@@ -48,12 +51,22 @@ const Navbar = () => {
 					</div>
 					{/* <!-- Secondary Navbar items --> */}
 					<div className="hidden md:flex items-center space-x-3 ">
-						<a
-							href="/"
-							className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
-						>
-							Log In
-						</a>
+						{user.email ? (
+							<button
+								onClick={logOut}
+								className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
+							>
+								Sign out
+							</button>
+						) : (
+							<Link
+								to="/login"
+								className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
+							>
+								Log In
+							</Link>
+						)}
+
 						{/* <a
 							href
 							className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"

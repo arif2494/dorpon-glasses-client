@@ -14,7 +14,7 @@ const Reviews = () => {
 	useEffect(() => {
 		fetch('http://localhost:5000/reviews').then((res) => res.json()).then((data) => setReviews(data));
 	}, []);
-	console.log(reviews, 'review');
+
 	return (
 		<div>
 			<h1 className=" text-center my-3 text-3xl font-medium">What Customer Says About Us</h1>
@@ -36,7 +36,7 @@ const Reviews = () => {
 				}}
 			>
 				{reviews.map((review) => (
-					<SwiperSlide>
+					<SwiperSlide key={review.name}>
 						<img src={man} className="icon-width" alt="!" />
 						<h1 className="text-2xl my-2 font-medium">{review.name}</h1>
 						<p className="w-9/12 font-medium text-gray-500">{review.review}</p>
