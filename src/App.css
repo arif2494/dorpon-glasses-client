@@ -22,9 +22,8 @@
 .h-300 {
 	height: 300px;
 }
-/* products */
-.product-border {
-	box-shadow: 0.7px 2.8px 6.1px rgba(0, 0, 0, 0.035), 1.5px 6.2px 13.1px rgba(0, 0, 0, 0.059),
-		2.6px 10.7px 22px rgba(0, 0, 0, 0.075), 4.3px 17.4px 35.5px rgba(0, 0, 0, 0.087),
-		7.2px 29.5px 68.5px rgba(0, 0, 0, 0.102), 11px 45px 140px rgba(0, 0, 0, 0.16);
+/* review */
+.icon-width {
+	width: 80px !important;
+	height: 80px !important;
 }
