@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../Home/Product/Product';
+import Footer from '../Shared/Footer/Footer';
+import Navbar from '../Shared/Navbar/Navbar';
 
 const ExploreProducts = () => {
 	const [ products, setProducts ] = useState([]);
@@ -9,14 +11,18 @@ const ExploreProducts = () => {
 		});
 	}, []);
 	return (
-		<div className="py-6 bg-gray-50">
-			<div className="container mx-auto ">
-				<h1 className="text-4xl font-medium text-center my-2">Our Products</h1>
-				<div className="grid grid-cols-3 gap-4">
-					{products.map((product) => <Product product={product} key={product.id} />)}
+		<React.Fragment>
+			<Navbar />
+			<div className="py-6 bg-gray-50">
+				<div className="container mx-auto ">
+					<h1 className="text-4xl font-medium text-center my-2">Our Products</h1>
+					<div className="grid grid-cols-3 gap-4">
+						{products.map((product) => <Product product={product} key={product.id} />)}
+					</div>
 				</div>
 			</div>
-		</div>
+			<Footer />
+		</React.Fragment>
 	);
 };
 

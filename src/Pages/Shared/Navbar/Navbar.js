@@ -47,13 +47,18 @@ const Navbar = () => {
 							>
 								Contact Us
 							</a>
+							<Link
+								to="/dashboard"
+								className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+							>
+								Dashboard
+							</Link>
 						</div>
 					</div>
 					{/* <!-- Secondary Navbar items --> */}
 					<div className="hidden md:flex items-center space-x-3 ">
 						{
 							user?.displayName && <button
-								onClick={logOut}
 								className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
 							>
 								{user.displayName}
