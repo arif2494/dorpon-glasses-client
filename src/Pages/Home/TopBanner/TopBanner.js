@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import bannerGlass from '../../../img/banner-glass2.png';
 const TopBanner = () => {
 	return (
@@ -16,9 +17,11 @@ const TopBanner = () => {
 								most trending glass right now. Don't miss out on this. We have much collection of
 								glasses like it. Try them Out
 							</p>
-							<button className="py-3 px-6 bg-indigo-500 text-white text-xl rounded hover:bg-indigo-700 my-3">
-								Explore More ____
-							</button>
+							<Link to="exploreProducts">
+								<button className="py-3 px-6 bg-indigo-500 text-white text-xl rounded hover:bg-indigo-700 my-3">
+									Explore More ____
+								</button>
+							</Link>
 						</div>
 						<div>
 							<img src={bannerGlass} alt="!" />
