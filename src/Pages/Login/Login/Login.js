@@ -17,20 +17,20 @@ const Login = () => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		logInWithEmailAndPassword(userData.email, userData.password);
+		logInWithEmailAndPassword(userData.email, userData.password, location, history);
 	};
 	return (
 		<div className="h-700">
 			<div className="container mx-auto">
 				<h1 className="text-center my-6 text-3xl font-medium">Enter Email and Password For Login</h1>
-				<div className=" mx-auto w-4/12 px-4 py-6 bg-green-200">
+				<div className=" mx-auto w-4/12 px-4 py-6 bg-green-200 rounded-xl shadow-xl">
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="email" className=" pl-1 text-2xl font-medium">
 							Enter Email
 						</label>
 						<input
 							type="text"
-							className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl"
+							className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 							name="email"
 							id="email"
 							onBlur={handleOnBlur}
@@ -40,7 +40,7 @@ const Login = () => {
 						</label>
 						<input
 							type="password"
-							className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl"
+							className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 							name="password"
 							onBlur={handleOnBlur}
 							id="password"

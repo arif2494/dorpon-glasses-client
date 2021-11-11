@@ -51,6 +51,14 @@ const Navbar = () => {
 					</div>
 					{/* <!-- Secondary Navbar items --> */}
 					<div className="hidden md:flex items-center space-x-3 ">
+						{
+							user?.displayName && <button
+								onClick={logOut}
+								className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
+							>
+								{user.displayName}
+							</button>
+						}
 						{user.email ? (
 							<button
 								onClick={logOut}

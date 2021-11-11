@@ -7,12 +7,14 @@ import {
 	signInWithEmailAndPassword,
 	GoogleAuthProvider,
 	onAuthStateChanged,
+	updateProfile,
 	signOut
 } from 'firebase/auth';
 
 initializeFirebase();
 const useFirebase = () => {
 	const [ user, setUser ] = useState({});
+	// console.log(user);
 	const [isLoading, setIsLoading] = useState(true);
 	// console.log(user);
 	const googleProvider = new GoogleAuthProvider();
@@ -35,13 +37,16 @@ const useFirebase = () => {
 			}).finally(() => setIsLoading(false))
 	};
 	// register with email and password
-	const registerWithEmailAndPassword = (email, password) => {
+	const registerWithEmailAndPassword = (email, password, name, location, history) => {
 				setIsLoading(true);
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
-				// Signed in
-				const user = userCredential.user;
-				console.log(user);
+				// set user name
+			const newUser = { displayName: name };
+				setUser(newUser);
+				setUserName(name);
+					const destination = location?.state?.from || '/';
+				history.replace(destination);
 			})
 			.catch((error) => {
 				const errorMessage = error.message;
@@ -49,19 +54,33 @@ const useFirebase = () => {
 			}).finally(() => setIsLoading(false))
 	};
 	// sign user with email & password
-	const logInWithEmailAndPassword = (email, password) => {
+	const logInWithEmailAndPassword = (email, password, location, history) => {
 				setIsLoading(true);
 		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				// Signed in
-				const user = userCredential.user;
-				console.log(user);
+				// const user = userCredential.user;
+				// console.log(user);
+					const destination = location?.state?.from || '/';
+				history.replace(destination);
 			})
 			.catch((error) => {
 				const errorMessage = error.message;
 				console.log(errorMessage);
 			}).finally(() => setIsLoading(false))
 	};
+	// set user name
+	const setUserName = (name) => {
+	updateProfile(auth.currentUser, {
+		displayName: name
+	}).then(() => {
+  // Profile updated!
+  console.log('profile updated');
+	}).catch((error) => {
+  // An error occurred
+  // ...
+	});
+	}
 	// ovserver user presence
 	useEffect(
 		() => {
