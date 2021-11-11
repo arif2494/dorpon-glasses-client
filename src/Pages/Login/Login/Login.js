@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import google from '../../../img/icon/google.png';
 const Login = () => {
 	const [ userData, setUserData ] = useState({});
-	console.log(userData);
+	// console.log(userData);
 	const { signInWithGoogle, logInWithEmailAndPassword } = useAuth();
+	const location = useLocation();
+	const history = useHistory();
 	const handleOnBlur = (e) => {
 		const data = { ...userData };
 		const name = e.target.name;
@@ -54,7 +56,10 @@ const Login = () => {
 						</Link>
 					</div>
 					<div className="flex justify-center ">
-						<button onClick={signInWithGoogle} className="flex  flex-col items-center">
+						<button
+							onClick={() => signInWithGoogle(location, history)}
+							className="flex  flex-col items-center"
+						>
 							<img src={google} className="w-12" alt="!" />
 							<p>Sign In With Google</p>
 						</button>

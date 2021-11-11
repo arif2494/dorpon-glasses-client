@@ -7,6 +7,7 @@ import Footer from './Pages/Shared/Footer/Footer';
 import AuthProvider from './context/AuthProvider/AuthProvider';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 
 function App() {
 	return (
@@ -17,9 +18,9 @@ function App() {
 					<Route exact path="/">
 						<Home />
 					</Route>
-					<Route path="/exploreProducts">
+					<PrivateRoute path="/exploreProducts">
 						<ExploreProducts />
-					</Route>
+					</PrivateRoute>
 					<Route path="/login">
 						<Login />
 					</Route>
