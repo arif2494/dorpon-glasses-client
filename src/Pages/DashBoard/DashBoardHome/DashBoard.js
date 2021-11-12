@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import glass from '../../img/icon/whiteGlass.png';
+import glass from '../../../img/icon/whiteGlass.png';
+// for nested routes
+import { Link, Switch, Route, useRouteMatch } from 'react-router-dom';
+import Pay from '../Pay/Pay';
+import MyOrder from '../MyOrder/MyOrder';
+import Review from '../Review/Review';
+import useAuth from '../../../hooks/useAuth';
 const DashBoard = () => {
+	const { logOut } = useAuth();
 	const handleOnClick = () => {
 		document.getElementById('sidebar').classList.toggle('-translate-x-full');
 	};
+	let { path, url } = useRouteMatch();
 	return (
 		<div>
 			<div className="bg-gray-800 hidden md:block">
@@ -58,34 +65,49 @@ const DashBoard = () => {
 					{/* <!-- nav --> */}
 					<nav>
 						<Link
-							to="/"
+							to={url}
 							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
 						>
 							Pay
 						</Link>
 						<Link
-							to="/"
+							to={`${url}/myOrder`}
 							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
 						>
 							My Order
 						</Link>
 						<Link
-							to="/"
+							to={`${url}/review`}
 							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
 						>
 							Review
 						</Link>
-						<Link
+						<button
 							to="/"
-							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+							onClick={logOut}
+							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white
+							w-full text-left"
 						>
 							Logout
-						</Link>
+						</button>
 					</nav>
 				</div>
 
 				{/* <!-- content --> */}
-				<div className="flex-1 p-10 text-2xl font-bold">content goes here</div>
+				<div className="flex-1 p-10 text-2xl font-bold">
+					{/* content goes here */}
+					<Switch>
+						<Route exact path={path}>
+							<Pay />
+						</Route>
+						<Route path={`${path}/myOrder`}>
+							<MyOrder />
+						</Route>
+						<Route path={`${path}/review`}>
+							<Review />
+						</Route>
+					</Switch>
+				</div>
 			</div>
 		</div>
 	);

@@ -7,7 +7,7 @@ import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Purchase from './Pages/Purchase/Purchase';
-import DashBoard from './Pages/DashBoard/DashBoard';
+import DashBoard from './Pages/DashBoard/DashBoardHome/DashBoard';
 
 function App() {
 	return (
