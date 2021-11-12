@@ -14,6 +14,7 @@ import {
 initializeFirebase();
 const useFirebase = () => {
 	const [ user, setUser ] = useState({});
+	const [admin, setAdmin] = useState(false);
 	// const [userData, setUserData] = useState({});
 	// console.log(user);
 	const [isLoading, setIsLoading] = useState(true);
@@ -98,6 +99,14 @@ const useFirebase = () => {
 		},
 		[ auth ]
 	);
+	// find admin
+	useEffect(()=>{
+		const url=`http://localhost:5000/admin/${user.email}`
+		fetch(url).then(res=>res.json()).then(data=> {
+			const admin = data.isAdmin;
+			setAdmin(admin);
+		})
+	},[user.email])
 	// save user to db
 	const saveUserToDb = (displayName, email, method) => {
 		const userinfo = {	displayName, email, };
@@ -123,6 +132,7 @@ const useFirebase = () => {
 	};
 	return {
 		isLoading,
+		admin,
 		signInWithGoogle,
 		registerWithEmailAndPassword,
 		logInWithEmailAndPassword,

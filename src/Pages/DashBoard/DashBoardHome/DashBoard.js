@@ -6,6 +6,10 @@ import Pay from '../Pay/Pay';
 import MyOrder from '../MyOrder/MyOrder';
 import Review from '../Review/Review';
 import useAuth from '../../../hooks/useAuth';
+import ManageOrders from '../ManageOrders/ManageOrders';
+import ManageProducts from '../ManageProducts/ManageProducts';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddProducts from '../AddProducts/AddProducts';
 const DashBoard = () => {
 	const { logOut } = useAuth();
 	const handleOnClick = () => {
@@ -82,6 +86,31 @@ const DashBoard = () => {
 						>
 							Review
 						</Link>
+						{/* admin link */}
+						<Link
+							to={`${url}/manageOrders`}
+							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+						>
+							Manage orders
+						</Link>
+						<Link
+							to={`${url}/manageProducts`}
+							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+						>
+							Manage Products
+						</Link>
+						<Link
+							to={`${url}/makeAdmin`}
+							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+						>
+							Make Admin
+						</Link>
+						<Link
+							to={`${url}/addProducts`}
+							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+						>
+							Add Product
+						</Link>
 						<button
 							to="/"
 							onClick={logOut}
@@ -105,6 +134,19 @@ const DashBoard = () => {
 						</Route>
 						<Route path={`${path}/review`}>
 							<Review />
+						</Route>
+						{/* admin routes */}
+						<Route path={`${path}/manageOrders`}>
+							<ManageOrders />
+						</Route>
+						<Route path={`${path}/manageProducts`}>
+							<ManageProducts />
+						</Route>
+						<Route path={`${path}/makeAdmin`}>
+							<MakeAdmin />
+						</Route>
+						<Route path={`${path}/addProducts`}>
+							<AddProducts />
 						</Route>
 					</Switch>
 				</div>
