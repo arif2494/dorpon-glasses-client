@@ -95,7 +95,7 @@ const DashBoard = () => {
 						{admin && (
 							<React.Fragment>
 								<Link
-									to={`${url}`}
+									to={url}
 									className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
 								>
 									Manage orders
@@ -137,7 +137,6 @@ const DashBoard = () => {
 					<Switch>
 						{!admin && (
 							<React.Fragment>
-								{' '}
 								<Route exact path={path}>
 									<Pay />
 								</Route>
@@ -152,7 +151,7 @@ const DashBoard = () => {
 						{/* admin routes */}
 						{admin && (
 							<React.Fragment>
-								<AdminRoute path={`${path}`}>
+								<AdminRoute exact path={path}>
 									<ManageOrders />
 								</AdminRoute>
 								<AdminRoute path={`${path}/manageProducts`}>

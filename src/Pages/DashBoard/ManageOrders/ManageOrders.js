@@ -37,7 +37,7 @@ const ManageOrders = () => {
 			<div className="my-6">
 				<h1 className="text-center text-3xl font-thin">Manage Orders</h1>
 			</div>
-			{/* sgow all orders */}
+			{/* show all orders */}
 			<div>
 				<div className="container mx-auto">
 					<div className="flex flex-col">
