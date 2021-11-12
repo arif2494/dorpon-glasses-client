@@ -14,6 +14,7 @@ import {
 initializeFirebase();
 const useFirebase = () => {
 	const [ user, setUser ] = useState({});
+	// const [userData, setUserData] = useState({});
 	// console.log(user);
 	const [isLoading, setIsLoading] = useState(true);
 	// console.log(user);
@@ -25,9 +26,9 @@ const useFirebase = () => {
 		signInWithPopup(auth, googleProvider)
 			.then((result) => {
 				// The signed-in user info.
-				const user = result.user;
-				setUser(user);
-				// console.log(user);
+				const userInfo = result.user;
+				setUser(userInfo);
+				saveUserToDb(userInfo.displayName, userInfo.email, 'PUT');
 				const destination = location?.state?.from || '/';
 				history.push(destination);
 			})
@@ -45,6 +46,7 @@ const useFirebase = () => {
 			const newUser = { displayName: name };
 				setUser(newUser);
 				setUserName(name);
+				saveUserToDb(name,email, 'POST');
 					const destination = location?.state?.from || '/';
 				history.replace(destination);
 			})
@@ -96,6 +98,18 @@ const useFirebase = () => {
 		},
 		[ auth ]
 	);
+	// save user to db
+	const saveUserToDb = (displayName, email, method) => {
+		const userinfo = {	displayName, email, };
+		const url = 'http://localhost:5000/users'
+		fetch(url, {
+			method: method,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(userinfo)
+		})
+	}
 	//  sign out
 	const logOut = () => {
 				setIsLoading(true);

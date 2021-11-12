@@ -64,7 +64,7 @@ const Navbar = () => {
 								{user.displayName}
 							</button>
 						}
-						{user.email ? (
+						{user?.displayName ? (
 							<button
 								onClick={logOut}
 								className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
