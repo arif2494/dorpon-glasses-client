@@ -94,7 +94,7 @@ const DashBoard = () => {
 				</div>
 
 				{/* <!-- content --> */}
-				<div className="flex-1 p-10 text-2xl font-bold">
+				<div className="flex-1 p-10">
 					{/* content goes here */}
 					<Switch>
 						<Route exact path={path}>

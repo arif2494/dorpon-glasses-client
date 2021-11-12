@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Swiper } from 'swiper/react/swiper';
 import { SwiperSlide } from 'swiper/react/swiper-slide';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper';
+import ReactStars from 'react-rating-stars-component';
+
 // Import Swiper styles
 import './swiper.min.css';
 import './pagination.min.css';
@@ -36,9 +38,17 @@ const Reviews = () => {
 				}}
 			>
 				{reviews.map((review) => (
-					<SwiperSlide key={review.name}>
+					<SwiperSlide key={review._id}>
 						<img src={man} className="icon-width" alt="!" />
 						<h1 className="text-2xl my-2 font-medium">{review.name}</h1>
+						<ReactStars
+							count={5}
+							isHalf={true}
+							edit={false}
+							value={parseFloat(review.ratting)}
+							size={24}
+							activeColor="#ffd700"
+						/>
 						<p className="w-9/12 font-medium text-gray-500">{review.review}</p>
 					</SwiperSlide>
 				))}
