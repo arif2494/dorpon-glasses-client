@@ -10,8 +10,9 @@ import ManageOrders from '../ManageOrders/ManageOrders';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddProducts from '../AddProducts/AddProducts';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 const DashBoard = () => {
-	const { logOut } = useAuth();
+	const { admin, logOut } = useAuth();
 	const handleOnClick = () => {
 		document.getElementById('sidebar').classList.toggle('-translate-x-full');
 	};
@@ -68,49 +69,57 @@ const DashBoard = () => {
 
 					{/* <!-- nav --> */}
 					<nav>
-						<Link
-							to={url}
-							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-						>
-							Pay
-						</Link>
-						<Link
-							to={`${url}/myOrder`}
-							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-						>
-							My Order
-						</Link>
-						<Link
-							to={`${url}/review`}
-							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-						>
-							Review
-						</Link>
+						{!admin && (
+							<React.Fragment>
+								<Link
+									to={url}
+									className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+								>
+									Pay
+								</Link>
+								<Link
+									to={`${url}/myOrder`}
+									className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+								>
+									My Order
+								</Link>
+								<Link
+									to={`${url}/review`}
+									className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+								>
+									Review
+								</Link>
+							</React.Fragment>
+						)}
 						{/* admin link */}
-						<Link
-							to={`${url}/manageOrders`}
-							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-						>
-							Manage orders
-						</Link>
-						<Link
-							to={`${url}/manageProducts`}
-							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-						>
-							Manage Products
-						</Link>
-						<Link
-							to={`${url}/makeAdmin`}
-							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-						>
-							Make Admin
-						</Link>
-						<Link
-							to={`${url}/addProducts`}
-							className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-						>
-							Add Product
-						</Link>
+						{admin && (
+							<React.Fragment>
+								<Link
+									to={`${url}`}
+									className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+								>
+									Manage orders
+								</Link>
+								<Link
+									to={`${url}/manageProducts`}
+									className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+								>
+									Manage Products
+								</Link>
+								<Link
+									to={`${url}/makeAdmin`}
+									className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+								>
+									Make Admin
+								</Link>
+								<Link
+									to={`${url}/addProducts`}
+									className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+								>
+									Add Product
+								</Link>
+							</React.Fragment>
+						)}
 						<button
 							to="/"
 							onClick={logOut}
@@ -126,28 +135,37 @@ const DashBoard = () => {
 				<div className="flex-1 p-10">
 					{/* content goes here */}
 					<Switch>
-						<Route exact path={path}>
-							<Pay />
-						</Route>
-						<Route path={`${path}/myOrder`}>
-							<MyOrder />
-						</Route>
-						<Route path={`${path}/review`}>
-							<Review />
-						</Route>
+						{!admin && (
+							<React.Fragment>
+								{' '}
+								<Route exact path={path}>
+									<Pay />
+								</Route>
+								<Route path={`${path}/myOrder`}>
+									<MyOrder />
+								</Route>
+								<Route path={`${path}/review`}>
+									<Review />
+								</Route>
+							</React.Fragment>
+						)}
 						{/* admin routes */}
-						<Route path={`${path}/manageOrders`}>
-							<ManageOrders />
-						</Route>
-						<Route path={`${path}/manageProducts`}>
-							<ManageProducts />
-						</Route>
-						<Route path={`${path}/makeAdmin`}>
-							<MakeAdmin />
-						</Route>
-						<Route path={`${path}/addProducts`}>
-							<AddProducts />
-						</Route>
+						{admin && (
+							<React.Fragment>
+								<AdminRoute path={`${path}`}>
+									<ManageOrders />
+								</AdminRoute>
+								<AdminRoute path={`${path}/manageProducts`}>
+									<ManageProducts />
+								</AdminRoute>
+								<AdminRoute path={`${path}/makeAdmin`}>
+									<MakeAdmin />
+								</AdminRoute>
+								<AdminRoute path={`${path}/addProducts`}>
+									<AddProducts />
+								</AdminRoute>
+							</React.Fragment>
+						)}
 					</Switch>
 				</div>
 			</div>
