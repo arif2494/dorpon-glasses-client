@@ -47,6 +47,7 @@ const AddProducts = () => {
 							type="text"
 							className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 							onBlur={handleBlur}
+							required
 							name="image"
 							id="image"
 						/>
@@ -59,6 +60,7 @@ const AddProducts = () => {
 							type="text"
 							className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 							onBlur={handleBlur}
+							required
 							name="name"
 							id="name"
 						/>
@@ -69,6 +71,7 @@ const AddProducts = () => {
 							type="text"
 							className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 							onBlur={handleBlur}
+							required
 							name="price"
 							id="price"
 						/>
@@ -79,6 +82,7 @@ const AddProducts = () => {
 							type="text"
 							className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl w-full  my-2 text-black rounded-xl px-2"
 							onBlur={handleBlur}
+							required
 							name="description"
 							rows="5"
 							id="description"

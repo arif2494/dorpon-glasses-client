@@ -17,7 +17,8 @@ const useFirebase = () => {
 	const [ user, setUser ] = useState({});
 	const [admin, setAdmin] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
-	const { notify } = useToast();;
+	const { notify } = useToast();
+	const email = 'honda@gmail.com'
 	const googleProvider = new GoogleAuthProvider();
 	const auth = getAuth();
 	// google sign in
@@ -42,7 +43,7 @@ const useFirebase = () => {
 				setIsLoading(true);
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
-			const newUser = { displayName: name };
+			const newUser = { displayName: name, email: email };
 				setUser(newUser);
 				setUserName(name);
 				saveUserToDb(name,email, 'POST');
@@ -103,7 +104,7 @@ const useFirebase = () => {
 	);
 	// find admin
 	useEffect(()=>{
-		const url=`https://frozen-temple-09204.herokuapp.com/admin/${user.email}`
+		const url=`https://frozen-temple-09204.herokuapp.com/admin/${user.email || email}`
 		fetch(url).then(res=>res.json()).then(data=> {
 			const admin = data.isAdmin;
 			setAdmin(admin);

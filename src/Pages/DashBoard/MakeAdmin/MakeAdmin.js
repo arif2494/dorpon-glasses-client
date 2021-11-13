@@ -45,6 +45,7 @@ const MakeAdmin = () => {
 						className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2 "
 						name="name"
 						onBlur={handleBlur}
+						required
 						id="name"
 					/>
 					<small>Be Sure What Are You Doing</small>

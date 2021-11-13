@@ -39,6 +39,7 @@ const Register = () => {
 									className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 									name="name"
 									id="name"
+									required
 									onBlur={handleOnBlur}
 								/>
 								<label htmlFor="email" className=" pl-1 text-2xl font-medium">
@@ -49,6 +50,7 @@ const Register = () => {
 									className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 									name="email"
 									id="email"
+									required
 									onBlur={handleOnBlur}
 								/>
 								<label htmlFor="password" className=" pl-1 text-2xl font-medium">
@@ -58,6 +60,7 @@ const Register = () => {
 									type="password"
 									className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 									name="password"
+									required
 									onBlur={handleOnBlur}
 									id="password"
 								/>

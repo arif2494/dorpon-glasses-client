@@ -38,6 +38,7 @@ const Login = () => {
 									type="text"
 									className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 									name="email"
+									required
 									id="email"
 									onBlur={handleOnBlur}
 								/>
@@ -48,6 +49,7 @@ const Login = () => {
 									type="password"
 									className="focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 									name="password"
+									required
 									onBlur={handleOnBlur}
 									id="password"
 								/>

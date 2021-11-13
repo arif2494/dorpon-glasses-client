@@ -142,6 +142,7 @@ const Purchase = () => {
 								type="text"
 								className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 								ref={phoneRef}
+								required
 								name="phone"
 								id="phone"
 							/>
@@ -153,6 +154,7 @@ const Purchase = () => {
 								className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl w-full  my-2 text-black rounded-xl px-2"
 								name="address"
 								rows="4"
+								required
 								id="address"
 								onChange={handleFocus}
 								ref={addressRef}

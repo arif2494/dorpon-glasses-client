@@ -52,6 +52,7 @@ const Review = () => {
 							type="text"
 							className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2 "
 							name="name"
+							required
 							onBlur={handleBlur}
 							id="name"
 						/>
@@ -63,6 +64,7 @@ const Review = () => {
 							name="ratting"
 							id="ratting"
 							onBlur={handleBlur}
+							required
 							onChange={handleRatting}
 							className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
 						/>
@@ -77,6 +79,7 @@ const Review = () => {
 							className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl w-full  my-2 text-black rounded-xl px-2"
 							name="review"
 							rows="5"
+							required
 							onBlur={handleBlur}
 							id="address"
 						/>
