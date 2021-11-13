@@ -10,6 +10,37 @@
 .h-700 {
 	height: 700px;
 }
+.glass-bg {
+	background-image: url('./img/star-shape.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.up-down {
+	animation: up-down 3s infinite alternate linear;
+}
+@keyframes up-down {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(20px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+.move-right {
+	animation: move-right 1s infinite alternate linear;
+}
+
+@keyframes move-right {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(10px);
+	}
+}
 
 /* footer */
 .footer-bg {
