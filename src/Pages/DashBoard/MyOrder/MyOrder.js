@@ -101,7 +101,9 @@ const MyOrder = () => {
 												</td>
 												<td className="px-6 py-4 whitespace-nowrap">
 													<div className="text-sm text-gray-900">{order.productName}</div>
-													<div className="text-sm text-gray-500">{order.address}</div>
+													<div className="text-sm text-gray-500">
+														{order.phone} || {order.address}
+													</div>
 												</td>
 												<td className="px-6 py-4 whitespace-nowrap">
 													{order.status === 'shipped' ? (

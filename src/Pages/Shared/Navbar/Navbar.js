@@ -10,7 +10,7 @@ const Navbar = () => {
 
 	return (
 		// <!-- Navbar goes here -->
-		<nav className="nav-bg shadow-lg">
+		<nav className="nav-bg shadow-lg ">
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
 					<div className="flex space-x-7">
@@ -23,36 +23,19 @@ const Navbar = () => {
 						</div>
 						{/* <!-- Primary Navbar items --> */}
 						<div className="hidden md:flex items-center space-x-1">
-							<a
-								href="/"
+							<Link
+								to="/"
 								className="py-4 px-2 text-gray-500  font-semibold  hover:text-green-500 transition duration-300"
 							>
 								Home
-							</a>
-							<a
-								href="/"
-								className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-							>
-								Services
-							</a>
-							<a
-								href="/"
-								className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-							>
-								About
-							</a>
-							<a
-								href="/"
-								className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-							>
-								Contact Us
-							</a>
-							<Link
+							</Link>
+	
+							{user?.displayName && <Link
 								to="/dashboard"
 								className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
 							>
 								Dashboard
-							</Link>
+							</Link>}
 						</div>
 					</div>
 					{/* <!-- Secondary Navbar items --> */}
@@ -80,12 +63,7 @@ const Navbar = () => {
 							</Link>
 						)}
 
-						{/* <a
-							href
-							className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"
-						>
-							Sign Up
-						</a> */}
+				
 					</div>
 					{/* <!-- Mobile menu button --> */}
 					<div className="md:hidden flex items-center">
@@ -107,33 +85,33 @@ const Navbar = () => {
 				</div>
 			</div>
 			{/* <!-- mobile menu --> */}
-			<div id="mobile-menu" className="hidden ">
+			<div id="mobile-menu" className="hidden md:hidden bg-green-100">
 				<ul className="">
 					<li className="active">
-						<a href="index.html" className="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">
+						<Link to='/' className="block text-sm px-2 py-4  hover:bg-green-500 font-semibold transition duration-300">
 							Home
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a
-							href="#services"
-							className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300"
+						<Link
+							to="/dashboard"
+							className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300 font-semibold"
 						>
-							Services
-						</a>
+							Dashboard
+						</Link>
 					</li>
+					{user?.displayName && <li>
+						<p  className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300 font-semibold">
+							{user?.displayName}
+						</p>
+					</li>}
 					<li>
-						<a href="#about" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">
-							About
-						</a>
-					</li>
-					<li>
-						<a
-							href="#contact"
-							className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300"
+						<button
+							onClick={logOut}
+							className="block w-full text-sm px-2 py-4 hover:bg-green-500 transition duration-300 font-semibold"
 						>
-							Contact Us
-						</a>
+							Logout
+						</button>
 					</li>
 				</ul>
 			</div>
