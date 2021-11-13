@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 const ManageOrders = () => {
 	const [ orders, setOrders ] = useState([]);
 	useEffect(() => {
@@ -13,8 +15,18 @@ const ManageOrders = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.modifiedCount > 0) {
-					alert('Order Shipped');
-					window.location.reload();
+					toast.success('Product Shipped', {
+						position: 'bottom-right',
+						autoClose: 1800,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: false,
+						draggable: true,
+						progress: undefined
+					});
+					setInterval(() => {
+						window.location.reload();
+					}, 2000);
 				}
 			});
 	};
@@ -27,8 +39,18 @@ const ManageOrders = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.deletedCount > 0) {
-					alert('Order Cancelled');
-					window.location.reload();
+					toast.error('Order Cancel', {
+						position: 'bottom-right',
+						autoClose: 1800,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: false,
+						draggable: true,
+						progress: undefined
+					});
+					setInterval(() => {
+						window.location.reload();
+					}, 2000);
 				}
 			});
 	};
@@ -143,6 +165,19 @@ const ManageOrders = () => {
 					</div>
 				</div>
 			</div>
+			<ToastContainer
+				position="bottom-right"
+				autoClose={1800}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover={false}
+			/>
+			{/* Same as */}
+			<ToastContainer />
 		</div>
 	);
 };
