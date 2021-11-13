@@ -12,7 +12,7 @@ const Products = () => {
 		<div className="py-6 bg-gray-50">
 			<div className="container mx-auto ">
 				<h1 className="text-4xl font-medium text-center my-2">Our Products</h1>
-				<div className="grid grid-cols-3 gap-4">
+				<div className="grid grid-cols-1 md:grid-cols-3 m-2 gap-4">
 					{products.map((product, index) => index < 6 && <Product product={product} key={product._id} />)}
 				</div>
 			</div>
