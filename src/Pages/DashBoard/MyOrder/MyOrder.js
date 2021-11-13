@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
+import useToast from '../../../hooks/useToast';
 
 const MyOrder = () => {
 	const [ orders, setOrders ] = useState([]);
+	const { notify, toaster } = useToast();
 	const { user } = useAuth();
 	const url = `http://localhost:5000/order/${user.email}`;
 	useEffect(
@@ -14,17 +16,22 @@ const MyOrder = () => {
 		[ url ]
 	);
 	const handleCancelOrder = (id) => {
-		const url = `http://localhost:5000/order/cancel/${id}`;
-		fetch(url, {
-			method: 'DELETE'
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.deletedCount > 0) {
-					alert('Order Cancelled');
-					window.location.reload();
-				}
-			});
+		const confirm = window.confirm('Are you sure you want to cancel this order?');
+		if (confirm) {
+			const url = `http://localhost:5000/order/cancel/${id}`;
+			fetch(url, {
+				method: 'DELETE'
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.deletedCount > 0) {
+						notify('error', 'Order Cancelled');
+						setTimeout(() => {
+							window.location.reload();
+						}, 2000);
+					}
+				});
+		}
 	};
 	return (
 		<div>
@@ -97,9 +104,15 @@ const MyOrder = () => {
 													<div className="text-sm text-gray-500">{order.address}</div>
 												</td>
 												<td className="px-6 py-4 whitespace-nowrap">
-													<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">
-														Pending
-													</span>
+													{order.status === 'shipped' ? (
+														<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-green-800">
+															{order.status}
+														</span>
+													) : (
+														<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">
+															pending
+														</span>
+													)}
 												</td>
 												<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 													{order.productPrice}
@@ -121,6 +134,7 @@ const MyOrder = () => {
 					</div>
 				</div>
 			</div>
+			{toaster()}
 		</div>
 	);
 };

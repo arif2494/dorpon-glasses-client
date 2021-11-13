@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import useToast from '../../../hooks/useToast';
 const ManageOrders = () => {
 	const [ orders, setOrders ] = useState([]);
+	const { notify, toaster } = useToast();
 	useEffect(() => {
 		fetch('http://localhost:5000/orders').then((res) => res.json()).then((data) => setOrders(data));
 	}, []);
+	// toaster
+
 	// ship an order
 	const shippedOrder = (id) => {
+		console.log(id);
 		const uri = `http://localhost:5000/order/${id}`;
 		fetch(uri, {
 			method: 'PUT'
@@ -15,16 +18,8 @@ const ManageOrders = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.modifiedCount > 0) {
-					toast.success('Product Shipped', {
-						position: 'bottom-right',
-						autoClose: 1800,
-						hideProgressBar: false,
-						closeOnClick: true,
-						pauseOnHover: false,
-						draggable: true,
-						progress: undefined
-					});
-					setInterval(() => {
+					notify('success', 'Product Shipped');
+					setTimeout(() => {
 						window.location.reload();
 					}, 2000);
 				}
@@ -32,27 +27,22 @@ const ManageOrders = () => {
 	};
 	// cancel an order
 	const handleCancelOrder = (id) => {
-		const url = `http://localhost:5000/order/cancel/${id}`;
-		fetch(url, {
-			method: 'DELETE'
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.deletedCount > 0) {
-					toast.error('Order Cancel', {
-						position: 'bottom-right',
-						autoClose: 1800,
-						hideProgressBar: false,
-						closeOnClick: true,
-						pauseOnHover: false,
-						draggable: true,
-						progress: undefined
-					});
-					setInterval(() => {
-						window.location.reload();
-					}, 2000);
-				}
-			});
+		const confirm = window.confirm('Are you sure you want to cancel this order?');
+		if (confirm) {
+			const url = `http://localhost:5000/order/cancel/${id}`;
+			fetch(url, {
+				method: 'DELETE'
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.deletedCount > 0) {
+						notify('error', 'Order Cancled');
+						setTimeout(() => {
+							window.location.reload();
+						}, 2000);
+					}
+				});
+		}
 	};
 	return (
 		<div>
@@ -129,10 +119,7 @@ const ManageOrders = () => {
 													</td>
 													<td className="px-6 py-4 whitespace-nowrap">
 														{order.status ? (
-															<button
-																onClick={() => shippedOrder(order._id)}
-																className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-green-800"
-															>
+															<button className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-green-800">
 																{order.status ? order.status : 'Pending'}
 															</button>
 														) : (
@@ -165,19 +152,7 @@ const ManageOrders = () => {
 					</div>
 				</div>
 			</div>
-			<ToastContainer
-				position="bottom-right"
-				autoClose={1800}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover={false}
-			/>
-			{/* Same as */}
-			<ToastContainer />
+			{toaster()}
 		</div>
 	);
 };

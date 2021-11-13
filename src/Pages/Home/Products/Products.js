@@ -13,7 +13,7 @@ const Products = () => {
 			<div className="container mx-auto ">
 				<h1 className="text-4xl font-medium text-center my-2">Our Products</h1>
 				<div className="grid grid-cols-3 gap-4">
-					{products.map((product, index) => index < 6 && <Product product={product} key={product.id} />)}
+					{products.map((product, index) => index < 6 && <Product product={product} key={product._id} />)}
 				</div>
 			</div>
 		</div>

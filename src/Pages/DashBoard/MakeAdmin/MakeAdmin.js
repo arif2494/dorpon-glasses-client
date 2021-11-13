@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import useToast from '../../../hooks/useToast';
 
 const MakeAdmin = () => {
 	const [ email, setEmail ] = useState('');
+	const { notify, toaster } = useToast();
 	const history = useHistory();
 	const handleBlur = (e) => {
 		const email = e.target.value;
@@ -17,12 +19,14 @@ const MakeAdmin = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.modifiedCount > 0) {
-					alert('admin added successfully');
-					history.push('/dashboard');
+					notify('success', 'Make this admin successfully');
+					setTimeout(() => {
+						history.push('/dashboard');
+					}, 2000);
 				} else if (data.matchedCount > 0) {
-					alert('user already admin');
+					notify('error', 'user already admin');
 				} else if (data.matchedCount === 0) {
-					alert('Please Login that user first!');
+					notify('error', 'Please Login that user first!');
 				}
 			});
 	};
@@ -54,6 +58,7 @@ const MakeAdmin = () => {
 					</button>
 				</form>
 			</div>
+			{toaster()}
 		</div>
 	);
 };

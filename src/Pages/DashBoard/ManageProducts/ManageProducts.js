@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import useToast from '../../../hooks/useToast';
 
 const ManageProducts = () => {
 	const [ products, setProducts ] = useState([]);
+	const { notify, toaster } = useToast();
+
 	useEffect(() => {
 		fetch('http://localhost:5000/products').then((res) => res.json()).then((data) => setProducts(data));
 	}, []);
 	const handleCancelProduct = (id) => {
-		let confirm = window.confirm('Are you sure you want to Delete this product?');
+		const confirm = window.confirm('Are you sure you want to Delete this product?');
 		if (confirm) {
 			const url = `http://localhost:5000/products/${id}`;
 			fetch(url, {
@@ -15,8 +18,10 @@ const ManageProducts = () => {
 				.then((res) => res.json())
 				.then((data) => {
 					if (data.deletedCount > 0) {
-						alert('Product Delete');
-						window.location.reload();
+						notify('error', 'Product Deleted Successfully');
+						setTimeout(() => {
+							window.location.reload();
+						}, 2000);
 					}
 				});
 		}
@@ -26,6 +31,7 @@ const ManageProducts = () => {
 			<div className="my-6">
 				<h1 className="text-center text-3xl font-thin">Manage Products</h1>
 			</div>
+
 			<div>
 				<div className="container mx-auto">
 					<div className="flex flex-col">
@@ -111,6 +117,7 @@ const ManageProducts = () => {
 					</div>
 				</div>
 			</div>
+			{toaster()}
 		</div>
 	);
 };

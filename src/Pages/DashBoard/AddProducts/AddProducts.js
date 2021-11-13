@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import useToast from '../../../hooks/useToast';
 
 const AddProducts = () => {
 	const [ product, setProduct ] = useState({});
+	const { notify, toaster } = useToast();
 	const history = useHistory();
 	const handleBlur = (e) => {
 		const { name, value } = e.target;
@@ -23,8 +25,10 @@ const AddProducts = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.insertedId) {
-					alert('product added successfully');
-					history.push('/dashboard/manageProducts');
+					notify('success', 'product added successfully');
+					setTimeout(() => {
+						history.push('/dashboard/manageProducts');
+					}, 2000);
 				}
 			});
 	};
@@ -86,6 +90,7 @@ const AddProducts = () => {
 					</form>
 				</div>
 			</div>
+			{toaster()}
 		</div>
 	);
 };

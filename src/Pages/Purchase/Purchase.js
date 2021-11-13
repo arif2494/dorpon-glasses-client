@@ -14,6 +14,7 @@ const Purchase = () => {
 	const emailRef = useRef();
 	const pNameRef = useRef();
 	const pPriceRef = useRef();
+	const phoneRef = useRef();
 	const addressRef = useRef();
 	const { id } = useParams();
 	const url = `http://localhost:5000/purchase/${id}`;
@@ -29,12 +30,14 @@ const Purchase = () => {
 		const email = emailRef.current.value;
 		const productName = pNameRef.current.value;
 		const productPrice = pPriceRef.current.value;
+		const phone = phoneRef.current.value;
 		const address = addressRef.current.value;
 		const data = {
 			name,
 			email,
 			productName,
 			productPrice,
+			phone,
 			address,
 			img: product.image
 		};
@@ -127,6 +130,16 @@ const Purchase = () => {
 								name="price"
 								id="price"
 							/>
+							<label htmlFor="phone" className=" pl-1 text-2xl font-medium">
+								Phone
+							</label>
+							<input
+								type="text"
+								className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl py-3 w-full  my-2 text-black rounded-xl px-2"
+								ref={phoneRef}
+								name="phone"
+								id="phone"
+							/>
 							<label htmlFor="address" className=" pl-1 text-2xl font-medium">
 								Your Address
 							</label>
@@ -134,13 +147,13 @@ const Purchase = () => {
 								type="text"
 								className="border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-400 shadow-2xl w-full  my-2 text-black rounded-xl px-2"
 								name="address"
-								rows="5"
+								rows="4"
 								id="address"
 								onChange={handleFocus}
 								ref={addressRef}
 							/>
 
-							<button className="w-full bg-green-600 hover:bg-green-800 my-2 py-3 text-white font-medium text-2xl">
+							<button className="w-full bg-green-600 hover:bg-green-800 my-2 py-2 text-white font-medium text-2xl">
 								Confirm Order
 							</button>
 						</form>

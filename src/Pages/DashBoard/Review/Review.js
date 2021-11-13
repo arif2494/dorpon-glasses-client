@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import useToast from '../../../hooks/useToast';
 
 const Review = () => {
 	const [ review, setReview ] = useState({});
+	const { notify, toaster } = useToast();
 	const history = useHistory();
 	const handleBlur = (e) => {
 		const name = e.target.name;
@@ -30,8 +32,10 @@ const Review = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.insertedId) {
-					alert('Review submitted successfully');
-					history.push('/');
+					notify('success', 'Review submitted successfully');
+					setTimeout(() => {
+						history.push('/');
+					}, 2000);
 				}
 			});
 	};
@@ -86,6 +90,7 @@ const Review = () => {
 					</form>
 				</div>
 			</div>
+			{toaster()}
 		</div>
 	);
 };
