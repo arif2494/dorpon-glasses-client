@@ -29,6 +29,12 @@ const Navbar = () => {
 							>
 								Home
 							</Link>
+							<Link
+								to="/exploreProducts"
+								className="py-4 px-2 text-gray-500  font-semibold  hover:text-green-500 transition duration-300"
+							>
+								Explore
+							</Link>
 	
 							{user?.displayName && <Link
 								to="/dashboard"
