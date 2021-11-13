@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import useToast from '../../hooks/useToast';
 import Footer from '../Shared/Footer/Footer';
 import Navbar from '../Shared/Navbar/Navbar';
 
@@ -9,6 +10,7 @@ const Purchase = () => {
 	const { user } = useAuth();
 	const [ product, setProduct ] = useState({});
 	const [ purchase, setPurchase ] = useState({});
+	const { notify, toaster } = useToast();
 	const history = useHistory();
 	const nameRef = useRef();
 	const emailRef = useRef();
@@ -57,7 +59,10 @@ const Purchase = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.insertedId) {
-					history.push('/');
+					notify('success', 'Order place Successfully');
+					setTimeout(() => {
+						history.push('/exploreProducts');
+					}, 2000);
 				}
 			});
 	};
@@ -159,6 +164,7 @@ const Purchase = () => {
 						</form>
 					</div>
 				</div>
+				{toaster()}
 			</div>
 			<Footer />
 		</React.Fragment>

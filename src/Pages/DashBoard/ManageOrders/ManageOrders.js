@@ -10,7 +10,6 @@ const ManageOrders = () => {
 
 	// ship an order
 	const shippedOrder = (id) => {
-		console.log(id);
 		const uri = `http://localhost:5000/order/${id}`;
 		fetch(uri, {
 			method: 'PUT'

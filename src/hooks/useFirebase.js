@@ -10,15 +10,14 @@ import {
 	updateProfile,
 	signOut
 } from 'firebase/auth';
+import useToast from './useToast';
 
 initializeFirebase();
 const useFirebase = () => {
 	const [ user, setUser ] = useState({});
 	const [admin, setAdmin] = useState(false);
-	// const [userData, setUserData] = useState({});
-	// console.log(user);
 	const [isLoading, setIsLoading] = useState(true);
-	// console.log(user);
+	const { notify } = useToast();;
 	const googleProvider = new GoogleAuthProvider();
 	const auth = getAuth();
 	// google sign in
@@ -43,17 +42,19 @@ const useFirebase = () => {
 				setIsLoading(true);
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
-				// set user name
 			const newUser = { displayName: name };
 				setUser(newUser);
 				setUserName(name);
 				saveUserToDb(name,email, 'POST');
 					const destination = location?.state?.from || '/';
-				history.replace(destination);
-			})
+					notify('success', 'Account created successfully');
+					setTimeout(() => {
+						history.replace(destination);
+					}, 2000);
+				})
 			.catch((error) => {
 				const errorMessage = error.message;
-				console.log(errorMessage);
+				notify('error',errorMessage);
 			}).finally(() => setIsLoading(false))
 	};
 	// sign user with email & password
@@ -61,15 +62,16 @@ const useFirebase = () => {
 				setIsLoading(true);
 		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
-				// Signed in
-				// const user = userCredential.user;
-				// console.log(user);
 					const destination = location?.state?.from || '/';
-				history.replace(destination);
+					notify('success', 'Login Successfull');
+					setTimeout(() => {
+						history.replace(destination);
+					}, 2000);
+				
 			})
 			.catch((error) => {
 				const errorMessage = error.message;
-				console.log(errorMessage);
+				notify('error', errorMessage);
 			}).finally(() => setIsLoading(false))
 	};
 	// set user name
@@ -78,7 +80,7 @@ const useFirebase = () => {
 		displayName: name
 	}).then(() => {
   // Profile updated!
-  console.log('profile updated');
+
 	}).catch((error) => {
   // An error occurred
   // ...

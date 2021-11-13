@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import useToast from '../../../hooks/useToast';
 import google from '../../../img/icon/google.png';
 import Footer from '../../Shared/Footer/Footer';
 import Navbar from '../../Shared/Navbar/Navbar';
 const Login = () => {
 	const [ userData, setUserData ] = useState({});
-	// console.log(userData);
 	const { signInWithGoogle, logInWithEmailAndPassword } = useAuth();
+	const { toaster } = useToast();
 	const location = useLocation();
 	const history = useHistory();
 	const handleOnBlur = (e) => {
@@ -72,6 +73,7 @@ const Login = () => {
 						</div>
 					</div>
 				</div>
+				{toaster()}
 			</div>
 			<Footer />
 		</React.Fragment>

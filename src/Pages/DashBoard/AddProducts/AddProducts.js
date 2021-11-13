@@ -50,7 +50,7 @@ const AddProducts = () => {
 							name="image"
 							id="image"
 						/>
-						<small className="ml-2 text-gray-700">https://source.unsplash.com/300x200?sunglass</small>
+						<small className="ml-2 text-gray-700">https://source.unsplash.com/690x560?sunglass</small>
 						<br />
 						<label htmlFor="name" className=" pl-1 text-2xl font-medium">
 							Product Name
@@ -85,7 +85,7 @@ const AddProducts = () => {
 						/>
 
 						<button className="w-full bg-green-600 hover:bg-green-800 my-2 py-3 text-white font-medium text-2xl">
-							Confirm Order
+							Add Product
 						</button>
 					</form>
 				</div>
