@@ -36,7 +36,7 @@ const MakeAdmin = () => {
 				<h1 className="text-center text-3xl font-thin">Make an admin</h1>
 			</div>
 			<div className="flex justify-center">
-				<form onSubmit={handleSubmit} className="bg-green-200 p-10 w-6/12">
+				<form onSubmit={handleSubmit} className="bg-green-200 p-10  w-full md:w-6/12 rounded-2xl shadow-2xl">
 					<label htmlFor="name" className=" pl-1 text-2xl font-thin">
 						Enter Email
 					</label>

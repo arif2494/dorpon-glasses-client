@@ -38,7 +38,7 @@ const AddProducts = () => {
 				<h1 className="text-center text-3xl font-thin">Add Product</h1>
 			</div>
 			<div className="flex justify-center">
-				<div className="w-6/12">
+				<div className=" w-full md:w-6/12">
 					<form onSubmit={handleSubmit} className="bg-green-200 p-10 rounded-2xl shadow-2xl">
 						<label htmlFor="image" className=" pl-1 text-2xl font-medium">
 							Product Image

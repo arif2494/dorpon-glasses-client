@@ -43,7 +43,7 @@ const Review = () => {
 		<div>
 			<h1 className="text-3xl font-thin text-center mb-4">Review</h1>
 			<div className="flex justify-center">
-				<div className="bg-green-200 p-10 w-6/12 rounded-2xl shadow-xl">
+				<div className="bg-green-200 p-10 w-full md:w-6/12 rounded-2xl shadow-xl">
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="name" className=" pl-1 text-2xl font-thin">
 							Enter Name

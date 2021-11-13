@@ -66,7 +66,7 @@ const Purchase = () => {
 		<React.Fragment>
 			<Navbar />
 			<div className="container mx-auto">
-				<div className="grid grid-cols-2 gap-4 my-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
 					<div className="px-8 py-4">
 						{product.image ? (
 							<img src={product.image} className="w-full rounded-2xl" alt="!" />
@@ -82,7 +82,7 @@ const Purchase = () => {
 							<p className="my-2 text-lg font-medium">Price: ${product.price}</p>
 						</div>
 					</div>
-					<div>
+					<div className="m-2">
 						<form onSubmit={handleSubmit}>
 							<label htmlFor="name" className=" pl-1 text-2xl font-medium">
 								Enter Name
