@@ -14,7 +14,9 @@ import man from '../../../img/icon/man.png';
 const Reviews = () => {
 	const [ reviews, setReviews ] = useState([]);
 	useEffect(() => {
-		fetch('http://localhost:5000/reviews').then((res) => res.json()).then((data) => setReviews(data));
+		fetch('https://frozen-temple-09204.herokuapp.com/reviews')
+			.then((res) => res.json())
+			.then((data) => setReviews(data));
 	}, []);
 
 	return (

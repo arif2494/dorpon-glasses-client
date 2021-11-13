@@ -103,7 +103,7 @@ const useFirebase = () => {
 	);
 	// find admin
 	useEffect(()=>{
-		const url=`http://localhost:5000/admin/${user.email}`
+		const url=`https://frozen-temple-09204.herokuapp.com/admin/${user.email}`
 		fetch(url).then(res=>res.json()).then(data=> {
 			const admin = data.isAdmin;
 			setAdmin(admin);
@@ -112,7 +112,7 @@ const useFirebase = () => {
 	// save user to db
 	const saveUserToDb = (displayName, email, method) => {
 		const userinfo = {	displayName, email, };
-		const url = 'http://localhost:5000/users'
+		const url = 'https://frozen-temple-09204.herokuapp.com/users'
 		fetch(url, {
 			method: method,
 			headers: {

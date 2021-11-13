@@ -12,7 +12,7 @@ const MakeAdmin = () => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const url = `http://localhost:5000/admin/${email}`;
+		const url = `https://frozen-temple-09204.herokuapp.com/admin/${email}`;
 		fetch(url, {
 			method: 'PUT'
 		})

@@ -15,7 +15,7 @@ const AddProducts = () => {
 		e.preventDefault();
 		const date = new Date();
 		product.date = date;
-		fetch('http://localhost:5000/products', {
+		fetch('https://frozen-temple-09204.herokuapp.com/products', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

@@ -6,12 +6,14 @@ const ManageProducts = () => {
 	const { notify, toaster } = useToast();
 
 	useEffect(() => {
-		fetch('http://localhost:5000/products').then((res) => res.json()).then((data) => setProducts(data));
+		fetch('https://frozen-temple-09204.herokuapp.com/products')
+			.then((res) => res.json())
+			.then((data) => setProducts(data));
 	}, []);
 	const handleCancelProduct = (id) => {
 		const confirm = window.confirm('Are you sure you want to Delete this product?');
 		if (confirm) {
-			const url = `http://localhost:5000/products/${id}`;
+			const url = `https://frozen-temple-09204.herokuapp.com/products/${id}`;
 			fetch(url, {
 				method: 'DELETE'
 			})

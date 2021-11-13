@@ -4,13 +4,15 @@ const ManageOrders = () => {
 	const [ orders, setOrders ] = useState([]);
 	const { notify, toaster } = useToast();
 	useEffect(() => {
-		fetch('http://localhost:5000/orders').then((res) => res.json()).then((data) => setOrders(data));
+		fetch('https://frozen-temple-09204.herokuapp.com/orders')
+			.then((res) => res.json())
+			.then((data) => setOrders(data));
 	}, []);
 	// toaster
 
 	// ship an order
 	const shippedOrder = (id) => {
-		const uri = `http://localhost:5000/order/${id}`;
+		const uri = `https://frozen-temple-09204.herokuapp.com/order/${id}`;
 		fetch(uri, {
 			method: 'PUT'
 		})
@@ -28,7 +30,7 @@ const ManageOrders = () => {
 	const handleCancelOrder = (id) => {
 		const confirm = window.confirm('Are you sure you want to cancel this order?');
 		if (confirm) {
-			const url = `http://localhost:5000/order/cancel/${id}`;
+			const url = `https://frozen-temple-09204.herokuapp.com/order/cancel/${id}`;
 			fetch(url, {
 				method: 'DELETE'
 			})

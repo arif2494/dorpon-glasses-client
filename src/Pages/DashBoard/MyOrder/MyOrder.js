@@ -6,7 +6,7 @@ const MyOrder = () => {
 	const [ orders, setOrders ] = useState([]);
 	const { notify, toaster } = useToast();
 	const { user } = useAuth();
-	const url = `http://localhost:5000/order/${user.email}`;
+	const url = `https://frozen-temple-09204.herokuapp.com/order/${user.email}`;
 	useEffect(
 		() => {
 			fetch(url).then((res) => res.json()).then((data) => {
@@ -18,7 +18,7 @@ const MyOrder = () => {
 	const handleCancelOrder = (id) => {
 		const confirm = window.confirm('Are you sure you want to cancel this order?');
 		if (confirm) {
-			const url = `http://localhost:5000/order/cancel/${id}`;
+			const url = `https://frozen-temple-09204.herokuapp.com/order/cancel/${id}`;
 			fetch(url, {
 				method: 'DELETE'
 			})

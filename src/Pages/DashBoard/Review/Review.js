@@ -22,7 +22,7 @@ const Review = () => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		fetch('http://localhost:5000/reviews', {
+		fetch('https://frozen-temple-09204.herokuapp.com/reviews', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

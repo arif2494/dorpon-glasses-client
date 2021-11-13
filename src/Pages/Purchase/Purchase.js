@@ -19,7 +19,7 @@ const Purchase = () => {
 	const phoneRef = useRef();
 	const addressRef = useRef();
 	const { id } = useParams();
-	const url = `http://localhost:5000/purchase/${id}`;
+	const url = `https://frozen-temple-09204.herokuapp.com/purchase/${id}`;
 	useEffect(
 		() => {
 			fetch(url).then((res) => res.json()).then((data) => setProduct(data));
@@ -49,7 +49,7 @@ const Purchase = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		fetch('http://localhost:5000/orders', {
+		fetch('https://frozen-temple-09204.herokuapp.com/orders', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
